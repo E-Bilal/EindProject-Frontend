@@ -1,0 +1,49 @@
+﻿<Page x:Class="FrontWPF.Pages.AdminRequests"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FrontWPF.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AdminRequests">
+
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property ="Background" Value="#FF727272"/>
+            <Setter Property="Foreground" Value="white"/>
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="10" />
+
+
+        </Style>
+
+
+    </Page.Resources>
+    <Grid>
+
+
+        <ListView  Name="lb_AdminRequests" Background="#36393F" BorderThickness="0"  ItemContainerStyle="{StaticResource t}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border Style="{StaticResource ts}" CornerRadius="5" Margin="10" Height="50">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Width="30" Height="30"
+                                    Background="CornflowerBlue"
+                                    CornerRadius="25"
+                                    Margin="5 0 0 0"
+                                    />
+                            <TextBlock Text="{Binding Username}"  Margin="8 15 0 0"  />
+                            <TextBlock Text="Pending" FontWeight="SemiBold" Margin="50 15 50 0"  />
+                            <Button Content="Accept Request"  Click="AcceptRequest"/>
+                            <Button Content="Reject Request" Click="RejectRequest"/>
+                        </StackPanel>
+                    </Border>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

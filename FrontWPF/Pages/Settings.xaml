@@ -1,0 +1,142 @@
+﻿<Page x:Class="FrontWPF.Pages.Settings"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FrontWPF.Pages"
+      mc:Ignorable="d" 
+      
+      Title="Settings"
+      FontFamily = "Montserrat"
+      Foreground="White"
+      FontSize="14">
+
+    <Page.Resources>
+        <Style TargetType="TextBox" x:Key="SettingsTextBox">
+
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="4 0 4 0"/>
+            <Setter Property="CaretBrush" Value="LightGray"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="IsEnabled" Value="False"/>
+            <Setter Property="Background" Value="#292b2F"/>
+        </Style>
+        
+        <Style TargetType="Button">
+            <Setter Property ="Background" Value="#FF727272"/>
+            <Setter Property="Foreground" Value="white"/>
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Height" Value="40"/>
+        </Style>
+    </Page.Resources>
+
+
+    <StackPanel>
+            <TextBlock Margin="0 15 0 0" FontSize="25" HorizontalAlignment="Center">Profile</TextBlock>
+
+            
+            <!--Username Section-->
+            <DockPanel  Margin=" 15 20 50 0" >
+                <TextBlock Text="Username" FontWeight="Bold" FontSize="14" VerticalAlignment="Center" Width="80"/>
+                <Border CornerRadius="5" BorderThickness="4" Background="#292b2F" Margin="50 0 0 0" MinWidth="200" MaxWidth="300">
+                    <TextBox x:Name="usernameTxt" Style="{StaticResource SettingsTextBox}"/>
+                </Border>
+                <Grid HorizontalAlignment="Right">
+                <Button Name="editUsernameBtn" Content="Edit" Click="EditUsername" Width="100"/>
+                <Button  Name="changeUsernameBtn" Content="Update" Click="ChangeUsername" Width="100"  Visibility="Hidden"/>
+                </Grid>
+            </DockPanel>
+            
+            <TextBlock  Name="responseUsernameTxt" FontSize="12" Margin="15,0,0,0" TextWrapping="Wrap"/>
+            <Separator Height="15" Width="Auto" HorizontalAlignment="Stretch" Margin="8 0 8 0" Background="WhiteSmoke" />
+            
+            <!--End Username Section-->
+
+            <!--Email Section-->
+            <DockPanel  Margin=" 15 5 50 0" >
+
+                <TextBlock Text="Email" FontWeight="Bold" VerticalAlignment="Center" Width="80"/>
+
+                <Border CornerRadius="5" BorderThickness="4" Background="#292b2F" Margin="50 0 0 0" MinWidth="200" MaxWidth="300">
+                    <TextBox x:Name="emailTxt" Style="{StaticResource SettingsTextBox}"/>
+                </Border>
+                <Grid HorizontalAlignment="Right">
+                    <Button Name="editEmailBtn" Content="Edit" Click="EditEmail" Width="100"/>
+                    <Button  Name="changeEmailBtn" Content="Update" Click="ChangeEmail" Width="100"  Visibility="Hidden"/>
+                </Grid>
+            </DockPanel>
+
+            <TextBlock  Name="responseEmailTxt" Foreground="#D7596D" FontSize="12" Margin="15,0,0,0" TextWrapping="Wrap"/>
+            <Separator Height="15" Width="Auto" HorizontalAlignment="Stretch" Margin="8 0 8 0" Background="WhiteSmoke" />
+           
+            <!--End Email Section-->
+            
+            <!--Password Section-->
+            <Grid>
+
+                <!--Edit Password-->       
+                <DockPanel  Margin=" 15 0 50 0"  Name="passdock" >
+                    <TextBlock Text="Password" FontWeight="Bold" VerticalAlignment="Center" Width="80"/>
+                    <TextBlock Text="●●●●●●●●●●" VerticalAlignment="Center" Margin="50 0 0 0"/>
+                    <Button Name="editPassBtn" Content="Edit" Click="EditPassword" Width="100" HorizontalAlignment="Right"/>
+                </DockPanel>
+                <!--End Edit Password-->
+                
+                <!--Update Password-->
+                <StackPanel Name="changePassPanel" Visibility="Hidden">
+
+                    <DockPanel  Margin=" 15 5 50 0" >
+                        <TextBlock Text="Current Password" FontWeight="Bold" VerticalAlignment="Center" Width="130"/>
+                        <Border CornerRadius="5" BorderThickness="4" Background="#292b2F" Margin="0 0 0 0" MinWidth="200" MaxWidth="300">
+                            <TextBox Name="currentPassTxt" Style="{StaticResource SettingsTextBox}"/>
+                        </Border>
+                        <Button  Name="updatePassBtn" Content="Update" Click="ChangePassword" Width="100"  HorizontalAlignment="Right"/>
+                    </DockPanel>
+
+                    <StackPanel Margin=" 15 5 50 0"  Height="50" Orientation="Horizontal" Name="updatePassPanel">
+                        <TextBlock Text="New Password" FontWeight="Bold" VerticalAlignment="Center" Width="130"/>
+                        <Border CornerRadius="5" BorderThickness="4" Background="#292b2F" MinWidth="200" MaxWidth="300" Width="200">
+                            <TextBox Name="newPassTxt" Style="{StaticResource SettingsTextBox}" />
+                        </Border>
+                    </StackPanel>
+
+            </StackPanel>
+                <!--End Update Password-->                
+            </Grid>
+
+            <TextBlock  Name="responsePassTxt" Foreground="#D7596D" FontSize="12" Margin="15,0,0,0" TextWrapping="Wrap"/>
+            <Separator Height="15" Width="Auto" HorizontalAlignment="Stretch" Margin="8 0 8 0" Background="WhiteSmoke" />
+        
+        
+        <!--End Password Section-->
+        <!--Role Section-->
+        <DockPanel  Margin=" 15 0 50 0" >
+            <TextBlock Text="Role" FontWeight="Bold" FontSize="14" VerticalAlignment="Center" Width="80"/>
+            <TextBlock Name="roleTxt" VerticalAlignment="Center" Margin="50 0 0 0"/>
+            <Grid HorizontalAlignment="Right">
+                <TextBlock Name="pendingTxt" Text="Pending" Visibility="Hidden" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right" Margin="0 0 30 0"/>
+                <Button  Name="requestRoleBtn" Content="Request Admin Role" Click="RequestAdmin" Width="180" Visibility="Hidden"/>
+                <Button  Name="revokeRoleBtn" Content="Revoke Admin Role" Click="RevokeAdmin" Width="180" Visibility="Hidden" />
+            </Grid>
+
+        </DockPanel>
+
+        <TextBlock  Name="responseRoleTxt" Foreground="#D7596D" FontSize="12" Margin="15,0,0,0" TextWrapping="Wrap"/>
+        <Separator Height="15" Width="Auto" HorizontalAlignment="Stretch" Margin="8 0 8 0" Background="WhiteSmoke" />
+
+        <!--End Role Section-->
+        
+        <!--Delete Account Section-->
+        <Button  Name="deleteAccountBtn" Content="Delete Account" Click="DeleteAccount"  Width="180" />
+        <!--End Delete Account Section-->
+
+
+
+    </StackPanel>
+
+
+</Page>

@@ -1,0 +1,166 @@
+﻿<Page x:Class="FrontWPF.Pages.Messages"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FrontWPF.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="1000"
+      Title="Messages">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+
+        </Grid.ColumnDefinitions>
+
+            <ListView  Name="lv_friends" Grid.Column="0"  Grid.Row="0" Background="#36393F" BorderThickness="0"  ItemContainerStyle="{StaticResource t}" SelectionChanged="lv_friends_SelectionChanged">
+                <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource ts}" CornerRadius="5" Margin="10" Height="50">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Width="30" Height="30"
+                                    Background="CornflowerBlue"
+                                    CornerRadius="25"
+                                    Margin="5 0 0 0"/>
+                            <TextBlock Text="{Binding Username}"  
+                                       Margin="8 15 0 0" Height="30"  
+                                       Visibility="{Binding UsernameVisible}"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+        <!--I know this post is 13 years old, 
+        but this is still something people want to do. 
+        in newer versions of .Net you can set VirtualizingPanel.ScrollUnit="Pixel" 
+        this way you won't lose virtualization and you get scroll per pixel instead of per item.-->
+
+
+        <ListView  Name="lv_chat" Grid.Column="1" Grid.Row="0" Background="#36393F" BorderThickness="0"  ItemContainerStyle="{StaticResource MessageLV}" ScrollViewer.CanContentScroll="False" VirtualizingPanel.ScrollUnit="Pixel">
+            <ListView.ItemTemplate >
+            <DataTemplate >
+                <StackPanel>
+                        
+                        <!--Sender Messages Section-->
+                        <Border Style="{StaticResource MessageBorder}" 
+                                CornerRadius="5" 
+                                Margin="10"                                 
+                                HorizontalAlignment="Left"
+                                Visibility="{Binding VisibleUser}">
+                            
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 10 0 0" Visibility="{Binding UsernameVisible}">
+                                    <Border Width="30" Height="30"  Background="CornflowerBlue" CornerRadius="25" />
+                                    <TextBlock  Text="{Binding Username}" Margin="10 0 0 0"  FontSize="12" FontWeight="SemiBold" VerticalAlignment="Center" />
+                            </StackPanel>
+                            
+                                <Border CornerRadius="0 10 10 10" Background="#FF82A3" Padding="10 7" HorizontalAlignment="Left" Margin="40 3 0 0">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Message}" FontSize="14" Foreground="#ffffff" VerticalAlignment="Center" Margin="3 0 3 0" Width="120"/>
+                                                <TextBlock Text="{Binding Timeformatted}" FontSize="10" Foreground="DimGray" 
+                                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                                                Margin="3 0 3 0"/>
+
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                        <!--End Sender Messages Section-->
+                        <!--User Messages Section-->
+
+                        <Border Style="{StaticResource MessageBorder}" 
+                                CornerRadius="5" 
+                                Margin="10"                                 
+                                HorizontalAlignment="Right"
+                                Visibility="{Binding VisibleFriend}">
+                            <StackPanel>
+
+
+                                <StackPanel Orientation="Horizontal" Margin="0 10 0 0"  Visibility="{Binding UsernameVisible}" HorizontalAlignment="Right">
+                                    <TextBlock 
+                                           Text="You"
+                                           Margin="0 0 10 0" 
+                                           FontSize="12" 
+                                           FontWeight="SemiBold"                                            
+                                           VerticalAlignment="Center"/>
+                                    
+                                    <Border Width="30" Height="30"
+                                            Background="CornflowerBlue"
+                                            CornerRadius="25" />
+
+                                </StackPanel>
+
+                                <Border CornerRadius="10 0 10 10" 
+                                        Background="#68CFA3" Padding="10 7" 
+                                        HorizontalAlignment="Right" Margin="0 3 40 0">
+                                    <StackPanel>
+                                        
+                                    <TextBlock Text="{Binding Message}" 
+                                               FontSize="14" Foreground="#ffffff" 
+                                               VerticalAlignment="Center" 
+                                               Margin="3 0 3 0"
+                                               Width="120"
+                                               TextWrapping="Wrap"
+                                               />
+                                    <TextBlock 
+                                        Text="{Binding Timeformatted}" 
+                                        FontSize="10" Foreground="DimGray" 
+                                        VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                                        Margin="3 0 3 0"/>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                        <!--End User Messages Section-->
+
+                    </StackPanel>
+
+            </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    
+
+        <Grid Grid.Row="2" Grid.Column="1"  x:Name="Messagebox" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Border CornerRadius="8" Grid.Column="0" Background="#3e4147" >
+                <TextBox 
+                     Width="380"
+                     Foreground="White"
+                     FontWeight="Medium"
+                     FontFamily="Montserrat"                                                 
+                     FontSize="15"
+                     BorderThickness="0"
+                     CaretBrush="Gray"
+                     Background="Transparent"
+                     HorizontalAlignment="Left"                     
+                     Height="50"
+                     Name="Message"
+                     TextWrapping="Wrap"
+                     Grid.ColumnSpan="2"/>
+            </Border>
+            <Button
+                    BorderThickness="0"
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    Padding="0"
+                    Background="Transparent"
+                    Width="40" Height="30"
+                    Click="SendMessage">
+                <Image Source="/Images/SendSymbol.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>

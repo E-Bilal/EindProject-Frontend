@@ -1,0 +1,113 @@
+﻿<Page x:Class="FrontWPF.Pages.Feed"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FrontWPF.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+
+      Title="Feed">
+
+    <Page.Resources>
+        <Style TargetType="Button" >
+            <Setter Property ="Background" Value="#FF727272"/>
+            <Setter Property="Foreground" Value="white"/>
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="10" />
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="170"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0 10 0 0" >
+            <Border CornerRadius="8"
+                    Background="#3e4147"
+                    Margin="10">
+                
+            <TextBox Height="85" Width="620"
+                     
+                     Name="txtTweet"
+                     Margin="5 5 0 0"
+                     VerticalAlignment="Stretch"                     
+                     HorizontalAlignment="Left"
+                     Background="Transparent"
+                     TextWrapping="Wrap"
+                     BorderThickness="0"
+                     FontWeight="Medium"
+                     FontFamily="Montserrat"                            
+                     Foreground="White"
+                     FontSize="15"
+                     CaretBrush="Gray" TextChanged="txtTweet_TextChanged"
+                     />
+            </Border>
+            <Button Name="tweetBtn" Content="Tweet" HorizontalAlignment="Right" Width="120" Margin="0 0 13 0" Click="PostTweet"/>
+        </StackPanel>
+
+        <ListView  Grid.Row="1" Name="lb_TweetFeed" Background="#36393F" BorderThickness="0" ItemContainerStyle="{StaticResource t}" ScrollViewer.CanContentScroll="False" VirtualizingPanel.ScrollUnit="Pixel">
+
+
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border Style="{StaticResource FeedBorder}" CornerRadius="5" Margin="10" Width="610">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+
+                                <Border Width="30" Height="30"
+                                    Background="CornflowerBlue"
+                                    CornerRadius="25"
+                                    Margin="5 10 0 0"
+                                    />
+                              <TextBlock Text="{Binding Username}"  Margin="8 17 0 0"  />
+                            </StackPanel>
+                            <TextBlock Text="{Binding Post}" Margin="5 7 0 0" TextWrapping="Wrap" Width="620"/>
+
+                            <Separator Name="MySeparator" 
+                               Height="4"
+                               Width="Auto"
+                               HorizontalAlignment="Stretch"
+                               Margin="8 10 8 0"        
+                                              
+                               Background="WhiteSmoke" />
+
+                            <DockPanel Margin="0 8 0 0">
+                                <TextBlock Text="{Binding currentTime}" Margin="7 4 0 0"/>
+                                                               
+                                <Button  Click="LikeTweet" Visibility="{Binding LikeVisible}"  
+                                         Background="Transparent"
+                                         Padding="0"
+                                         Margin="40 0 0 15"
+                                         Width="25" Height="25">
+                                    
+                                    <Image Source="/Images/LikeSymbol.png"/>
+
+                                </Button>
+                                <Button  Click="LikeTweet" Visibility="{Binding DislikeVisible}" 
+                                         Padding="0"
+                                         Margin="40 0 0 15"
+                                         Width="25" Height="25"
+                                         Background="Transparent"                                         
+                                         >
+                                    <Image Source="/Images/DislikeSymbol.png"/>
+                                                                       
+                                </Button>
+                                    <TextBlock Text="{Binding AmountLikes}" Margin="7 4 0 0"/>
+                                <Button Content="Delete Tweet" Click="DeleteTweet" HorizontalAlignment="Right" Margin="0 0 20 7" Visibility="{Binding DeleteVisible}"/>
+                            </DockPanel>
+                        </StackPanel>
+                    </Border>
+
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+</Page>

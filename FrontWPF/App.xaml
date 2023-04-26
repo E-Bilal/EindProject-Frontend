@@ -1,0 +1,17 @@
+﻿<Application x:Class="FrontWPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:FrontWPF"
+             StartupUri="LoginWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="./Themes/Navbar.xaml"/>
+                <ResourceDictionary Source="./Themes/SearchFriendsTheme.xaml"/>
+                <ResourceDictionary Source="./Themes/StylishScrollbar.xaml"/>
+                <ResourceDictionary Source="./Themes/ListViewItemTheme.xaml"/>
+                <ResourceDictionary Source="./Themes/MessageTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

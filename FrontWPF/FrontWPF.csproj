@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\DislikeSymbol.png" />
+    <None Remove="Images\key-icon.png" />
+    <None Remove="Images\LikeSymbol.png" />
+    <None Remove="Images\logo.png" />
+    <None Remove="Images\MR.png" />
+    <None Remove="Images\pr.png" />
+    <None Remove="Images\SendSymbol.png" />
+    <None Remove="Images\test.png" />
+    <None Remove="Images\twitterLogo.png" />
+    <None Remove="Images\user-icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="RestSharp" Version="108.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\DislikeSymbol.png" />
+    <Resource Include="Images\key-icon.png" />
+    <Resource Include="Images\LikeSymbol.png" />
+    <Resource Include="Images\logo.png" />
+    <Resource Include="Images\SendSymbol.png" />
+    <Resource Include="Images\user-icon.png" />
+  </ItemGroup>
+
+</Project>
