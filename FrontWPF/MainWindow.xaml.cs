@@ -38,6 +38,7 @@ namespace FrontWPF
             {
                 listNav.ItemsSource = new List<NavButton>
                 {
+                    new NavButton("Explore", new Explore()),
                     new NavButton("Feed", new Feed()),
                     new NavButton("Search Friends", new SearchFriends()),
                     new NavButton("Friends" , new Friends()),
@@ -52,6 +53,7 @@ namespace FrontWPF
             {
                 listNav.ItemsSource = new List<NavButton>
                 {
+                    new NavButton("Explore", new Explore()),
                     new NavButton("Feed", new Feed()),
                     new NavButton("Search Friends", new SearchFriends()),
                     new NavButton("Friends" , new Friends()),

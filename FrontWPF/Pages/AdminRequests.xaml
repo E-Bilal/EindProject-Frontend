@@ -36,9 +36,10 @@
                                     Margin="5 0 0 0"
                                     />
                             <TextBlock Text="{Binding Username}"  Margin="8 15 0 0"  />
-                            <TextBlock Text="Pending" FontWeight="SemiBold" Margin="50 15 50 0"  />
-                            <Button Content="Accept Request"  Click="AcceptRequest"/>
-                            <Button Content="Reject Request" Click="RejectRequest"/>
+                            <TextBlock Text="Pending" Visibility="{Binding Pending}" FontWeight="SemiBold" Margin="50 15 50 0"  />
+                            <Button Content="Accept Request"  Click="AcceptRequest" Visibility="{Binding Pending}"/>
+                            <Button Content="Reject Request" Click="RejectRequest" Visibility="{Binding Pending}"/>
+                            <Button Content="Revoke Role" Margin="180 0 0 0" Click="RevokeRequest" Visibility="{Binding Accepted}"/>
                         </StackPanel>
                     </Border>
 

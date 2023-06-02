@@ -293,7 +293,9 @@ namespace FrontWPF.Pages
                 responseRoleTxt.Foreground = Brushes.ForestGreen;
                 responseRoleTxt.Text = "Admin role successfully requested.";
 
-                User.RoleRequest = JsonConvert.DeserializeObject<string>(response.Content.ToString());
+                //User.RoleRequest = JsonConvert.DeserializeObject<string>(response.Content.ToString());
+                User.RoleRequest = "Pending";
+
                 pendingTxt.Visibility = Visibility.Visible;
                 requestRoleBtn.Visibility = Visibility.Collapsed;
             }
@@ -319,11 +321,14 @@ namespace FrontWPF.Pages
                 responseRoleTxt.Text = "Admin role successfully revoked.";
 
                 User.Role = "User";
-                User.RoleRequest = JsonConvert.DeserializeObject<string>(response.Content.ToString());
+                User.RoleRequest = "NoRequest";
+                //User.RoleRequest = JsonConvert.DeserializeObject<string>(response.Content.ToString());
+
                 
                 revokeRoleBtn.Visibility = Visibility.Collapsed;
                 requestRoleBtn.Visibility = Visibility.Visible;
-                roleTxt.Text = "User";
+                pendingTxt.Visibility = Visibility.Collapsed;
+                roleTxt.Text = "User";                
             }
 
             catch
@@ -331,6 +336,7 @@ namespace FrontWPF.Pages
                 responseRoleTxt.Text = "Something went wrong , try again later.";
             }
 
+            
 
         }
 

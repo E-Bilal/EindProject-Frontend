@@ -82,5 +82,26 @@ namespace FrontWPF.Pages
             }
         }
 
+        private async void RevokeRequest(object sender, RoutedEventArgs e)
+        {
+
+            var rowItem = (sender as Button).DataContext as GetAdminRequests;
+            string userId = rowItem.Id;
+            MessageBox.Show(userId);
+            RestSharp.client.Authenticator = new JwtAuthenticator(User.Token);
+            RestRequest request = new RestRequest("Settings/RevokeAdminRole").AddQueryParameter("id", userId);
+
+            try
+            {
+                await RestSharp.client.PatchAsync(request);
+                GetAdminRequets();
+            }
+
+            catch
+            {
+                MessageBox.Show("Something went wrong , try again later.");
+            }
+        }
+
     }
 }

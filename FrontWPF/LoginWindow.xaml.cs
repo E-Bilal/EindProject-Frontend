@@ -78,7 +78,7 @@ namespace FrontWPF
             var login = new Login()
             {
                 Email = emailTxt.Text,
-                Password = passTxt.Text,
+                Password = passTxt.Password.ToString(),
 
             };
 
